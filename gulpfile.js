@@ -3,9 +3,9 @@ const pug = require('gulp-pug');
 const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
 const terser = require('gulp-terser');
-const concat = require('gulp-concat');
 const browserSync = require('browser-sync').create();
 const del = require('del');
+const webpack = require('webpack-stream');
 
 const paths = {
   src: {
@@ -37,12 +37,13 @@ function scssTask() {
 }
 
 function jsTask() {
-  return gulp.src([
-    'src/scripts/utils/helpers.js',
-    'src/scripts/api/api.js',
-    'src/scripts/main.js'
-  ])
-    .pipe(concat('main.js'))
+  return gulp.src('src/scripts/main.js')
+    .pipe(webpack({
+      mode: 'development',
+      output: {
+        filename: 'main.js'
+      }
+    }))
     .pipe(gulp.dest(paths.dist + '/js'))
     .pipe(browserSync.stream());
 }
@@ -60,12 +61,13 @@ function scssBuild() {
 }
 
 function jsBuild() {
-  return gulp.src([
-    'src/scripts/utils/helpers.js',
-    'src/scripts/api/api.js',
-    'src/scripts/main.js'
-  ])
-    .pipe(concat('main.js'))
+  return gulp.src('src/scripts/main.js')
+    .pipe(webpack({
+      mode: 'production',
+      output: {
+        filename: 'main.js'
+      }
+    }))
     .pipe(terser())
     .pipe(gulp.dest(paths.dist + '/js'));
 }
