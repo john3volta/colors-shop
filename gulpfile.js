@@ -10,7 +10,7 @@ const webpack = require('webpack-stream');
 const paths = {
   src: {
     pug: 'src/**/*.pug',
-    scss: 'src/styles/**/*.scss',
+    scss: ['src/styles/**/*.scss', 'src/components/**/*.scss'],
     js: 'src/scripts/**/*.js',
     img: 'src/assets/img/**/*'
   },
