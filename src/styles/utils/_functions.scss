@@ -2,4 +2,11 @@
 
 @function rem-calc($px, $base: 16) {
   @return math.div($px, $base) * 1rem;
+}
+
+@function responsive-clamp($min, $max, $min-width: 375, $max-width: 1920) {
+  $vw-value: ($max - $min) / ($max-width - $min-width) * 100;
+  $offset: $min - ($min-width * $vw-value / 100);
+  
+  @return clamp(#{rem-calc($min)}, #{rem-calc($offset)} + #{$vw-value}vw, #{rem-calc($max)});
 } 

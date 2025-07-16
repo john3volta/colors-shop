@@ -11,4 +11,8 @@
   @media (max-width: $breakpoint-mobile) {
     @content;
   }
-} 
+}
+
+@mixin responsive($property, $min, $max, $min-width: 375, $max-width: 1920) {
+  #{$property}: responsive-clamp($min, $max, $min-width, $max-width);
+}
