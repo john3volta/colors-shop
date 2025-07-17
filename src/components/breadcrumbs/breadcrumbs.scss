@@ -1,0 +1,48 @@
+@use '../../styles/utils/functions' as *;
+@use '../../styles/base/variables' as *;
+@use '../../styles/base/mixins' as *;
+
+.breadcrumbs {
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+  
+  &__item {
+    display: flex;
+    align-items: center;
+    
+    &:not(:last-child) {
+      margin-right: rem-calc(8);
+      
+      &::after {
+        content: '';
+        width: rem-calc(3);
+        height: rem-calc(3);
+        border-radius: 50%;
+        background-color: #C4C4C4;
+        opacity: 0.3;
+        margin-left: rem-calc(8);
+      }
+    }
+  }
+  
+  &__link {
+    font-size: rem-calc(10);
+    letter-spacing: 0.06em;
+    color: $color-bg;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+    
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  
+  &__current {
+    font-size: rem-calc(10);
+    letter-spacing: 0.06em;
+    color: $color-bg;
+    opacity: 0.3;
+  }
+} 
