@@ -30,7 +30,7 @@
   &__link {
     font-size: rem-calc(10);
     letter-spacing: 0.06em;
-    color: $color-bg;
+    color: $color-light;
     opacity: 0.3;
     transition: opacity 0.3s ease;
     
@@ -42,7 +42,7 @@
   &__current {
     font-size: rem-calc(10);
     letter-spacing: 0.06em;
-    color: $color-bg;
+    color: $color-light;
     opacity: 0.3;
   }
 } 
