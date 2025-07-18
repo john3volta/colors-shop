@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -31,6 +36,14 @@ img, picture, video, canvas, svg {
 
 input, textarea, select {
   font: inherit;
+  border: none;
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
 }
 
 button {
