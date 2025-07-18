@@ -3,10 +3,10 @@
 @use '../../styles/base/mixins' as *;
 
 .header {
-  @include responsive(padding-top, 20, 64, 375, 1920);
-  @include responsive(padding-bottom, 20, 64, 375, 1920);
-  @include responsive(margin-right, 20, 64);
-  @include responsive(margin-left, 20, 64);
+  @include responsive(padding-top, 24, 40, 375, 1920);
+  @include responsive(padding-bottom, 24, 40, 375, 1920);
+  @include responsive(margin-right, 24, 64);
+  @include responsive(margin-left, 24, 64);
   gap: rem-calc(20);
   display: flex;
   align-items: center;
