@@ -1,0 +1,32 @@
+mixin slider(options = {})
+  - var title = options.title
+  - var subtitle = options.subtitle
+  - var defaultImage = options.defaultImage || 'img/slides/slider-1.png'
+  - var altText = options.altText || 'Слайд'
+  - var imagePath = options.imagePath || 'img/slides'
+  - var imagePrefix = options.imagePrefix || 'slider'
+  - var imageExtension = options.imageExtension || 'png'
+  - var maxSlides = options.maxSlides || 6
+  
+  .slider(data-image-path=imagePath data-image-prefix=imagePrefix data-image-extension=imageExtension data-max-slides=maxSlides)
+    .slider__breadcrumbs
+      include ../breadcrumbs/breadcrumbs
+    
+    .slider__content
+      .slider__text
+        h1.slider__title= title
+        p.slider__subtitle= subtitle
+      
+      .slider__image
+        img(src=defaultImage alt=altText)
+    
+    .slider__navigation
+      button.slider__arrow.slider__arrow--prev(type="button" aria-label="Предыдущий слайд")
+        svg.slider__arrow-icon
+          use(href="#icon-chevron-left")
+      
+      button.slider__arrow.slider__arrow--next(type="button" aria-label="Следующий слайд")
+        svg.slider__arrow-icon
+          use(href="#icon-chevron-right")
+    
+    .slider__pagination

@@ -3,4 +3,6 @@
 @use 'base/mixins' as *;
 @use 'base/reset' as *;
 
-@use '../components/header/header' as *; 
+@use '../components/header/header' as *;
+@use '../components/breadcrumbs/breadcrumbs' as *;
+@use '../components/slider/slider' as *; 
