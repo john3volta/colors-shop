@@ -23,14 +23,18 @@ export class Api {
     const oneMonthAgo = new Date();
     oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
-    return products.map(product => {
-      const productDate = new Date(product.dateAdded);
-      const isNew = productDate > oneMonthAgo;
-      
-      return {
-        ...product,
-        sortTypes: isNew ? [...product.sortTypes, 'new'] : product.sortTypes
-      };
-    });
+    return products
+      .filter(product => {
+        return product.sortTypes && product.sortTypes.length > 0;
+      })
+      .map(product => {
+        const productDate = new Date(product.dateAdded);
+        const isNew = productDate > oneMonthAgo;
+        
+        return {
+          ...product,
+          sortTypes: isNew ? [...product.sortTypes, 'new'] : product.sortTypes
+        };
+      });
   }
 } 
