@@ -1,12 +1,8 @@
-class Overlay {
+export class Overlay {
   constructor() {
     this.overlay = document.createElement('div');
     this.overlay.className = 'overlay';
     document.body.appendChild(this.overlay);
-    
-    this.overlay.addEventListener('click', function() {
-      this.hide();
-    }.bind(this));
   }
   
   show() {
@@ -18,6 +14,6 @@ class Overlay {
   }
 }
 
-window.overlay = new Overlay();
-
-export { Overlay }; 
+document.addEventListener('DOMContentLoaded', () => {
+  window.overlay = new Overlay();
+}); 
