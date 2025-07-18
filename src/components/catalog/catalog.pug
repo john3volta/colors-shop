@@ -1,0 +1,40 @@
+.catalog
+  .catalog__filters
+    .catalog__filters-list
+      .catalog__filter-item
+        input.catalog__filter-input(type="checkbox" id="filter-new" checked)
+        .catalog__filter-label.catalog__filter-label--active
+        .catalog__filter-text Новинки
+      .catalog__filter-item
+        input.catalog__filter-input(type="checkbox" id="filter-instock")
+        .catalog__filter-label
+        .catalog__filter-text Есть в наличии
+      .catalog__filter-item
+        input.catalog__filter-input(type="checkbox" id="filter-contract")
+        .catalog__filter-label
+        .catalog__filter-text Контрактные
+      .catalog__filter-item
+        input.catalog__filter-input(type="checkbox" id="filter-exclusive")
+        .catalog__filter-label
+        .catalog__filter-text Эксклюзивные
+      .catalog__filter-item
+        input.catalog__filter-input(type="checkbox" id="filter-sale")
+        .catalog__filter-label
+        .catalog__filter-text Распродажа
+  
+  .catalog__products
+    .catalog__header
+      .catalog__count 0 товаров
+      button.catalog__filters-btn(type="button") Фильтры
+      .catalog__sort
+        button.catalog__sort-trigger(type="button")
+          span.catalog__sort-text Сначала дорогие
+          svg.catalog__sort-icon
+            use(href="#icon-triangle-down")
+        .catalog__sort-options
+          .catalog__sort-option(data-value="expensive") Сначала дорогие
+          .catalog__sort-option(data-value="cheap") Сначала дешевые
+          .catalog__sort-option(data-value="new") Сначала новые
+          .catalog__sort-option(data-value="popular") По популярности
+    
+    .catalog__list 
