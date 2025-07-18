@@ -1,0 +1,21 @@
+@use '../../styles/utils/functions' as *;
+@use '../../styles/base/variables' as *;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color-dark, 0.7);
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  cursor: pointer;
+  
+  &--active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
