@@ -60,6 +60,7 @@
       border-radius: 50%;
       transition: transform 0.3s ease;
     }
+    
     &--active {
       background-color: $color-primary;
       
@@ -167,7 +168,7 @@
   &__card {
     position: relative;
     @include responsive(width, 156, 278, 375, 1920);
-    @include responsive(height, 304, 398, 375, 1920);
+    @include responsive(height, 270, 376, 375, 1920);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,8 +186,8 @@
     
     &-image {
       position: relative;
-      @include responsive(width, 156, 278);
-      @include responsive(height, 156, 278);
+      @include responsive(width, 112, 200);
+      @include responsive(height, 112, 200);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -309,9 +310,46 @@
       display: block;
     }
     
-    &__filters,
+    &__filters:not(.catalog__filters--mobile),
     &__count {
       display: none;
+    }
+    
+    &__filters--mobile {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      max-width: none;
+      height: 85vh;
+      background: $color-light;
+      border-radius: rem-calc(24) rem-calc(24) 0 0;
+      padding: rem-calc(54) rem-calc(24);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      z-index: 11;
+      overflow-y: auto;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: rem-calc(12);
+        left: 50%;
+        transform: translateX(-50%);
+        width: rem-calc(28);
+        height: rem-calc(4);
+        background: rgba($color-dark, 0.6);
+        border-radius: rem-calc(40);
+      }
+      
+      &.catalog__filters--open {
+        transform: translateY(0);
+      }
+      
+      &.catalog__filters--dragging {
+        transition: none;
+      }
     }
 
     &__card-add-to-cart {

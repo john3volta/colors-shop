@@ -1,6 +1,6 @@
 import { Api } from '../../scripts/api/api.js';
 
-class Catalog {
+export class Catalog {
   constructor(container) {
     this.container = container;
     this.products = [];
@@ -28,6 +28,7 @@ class Catalog {
     });
     
     this.initSortDropdown();
+    this.initMobileFilters();
     
     this.container.querySelector('.catalog__list')?.addEventListener('wheel', this.handleScroll.bind(this));
   }
@@ -263,7 +264,7 @@ class Catalog {
     }.bind(this));
     
     document.addEventListener('click', function(e) {
-      if (!dropdown.contains(e.target)) {
+      if (!dropdown.contains(e.target) && dropdown.classList.contains('catalog__sort-dropdown--open')) {
         this.closeSortDropdown(dropdown);
       }
     }.bind(this));
@@ -279,10 +280,122 @@ class Catalog {
   
   openSortDropdown(dropdown) {
     dropdown.classList.add('catalog__sort-dropdown--open');
+    
+    if (window.overlay) {
+      window.overlay.show();
+    }
   }
   
   closeSortDropdown(dropdown) {
     dropdown.classList.remove('catalog__sort-dropdown--open');
+    if (window.overlay) {
+      window.overlay.hide();
+    }
+  }
+  
+  initMobileFilters() {
+    const filtersBtn = this.container.querySelector('.catalog__filters-btn');
+    const filters = this.container.querySelector('.catalog__filters');
+    
+    if (!filtersBtn || !filters) {
+      return;
+    }
+    
+    filtersBtn.addEventListener('click', function() {
+      this.toggleMobileFilters();
+    }.bind(this));
+    
+    if (window.overlay && window.overlay.overlay) {
+      window.overlay.overlay.addEventListener('click', function(e) {
+        e.stopPropagation();
+        
+        const dropdown = this.container.querySelector('.catalog__sort');
+        if (dropdown && dropdown.classList.contains('catalog__sort-dropdown--open')) {
+          this.closeSortDropdown(dropdown);
+        }
+          
+        const filters = this.container.querySelector('.catalog__filters');
+        if (filters && filters.classList.contains('catalog__filters--open')) {
+          this.closeMobileFilters();
+        }
+      }.bind(this));
+    }
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && filters.classList.contains('catalog__filters--open')) {
+        this.closeMobileFilters();
+      }
+    }.bind(this));
+    
+    //swipe
+    let startY = 0;
+    let currentY = 0;
+    
+    filters.addEventListener('touchstart', function(e) {
+      startY = e.touches[0].clientY;
+    });
+    
+    filters.addEventListener('touchmove', function(e) {
+      currentY = e.touches[0].clientY;
+      const deltaY = currentY - startY;
+      
+      // Если свайп вниз, двигаем фильтры за пальцем
+      if (deltaY > 0) {
+        filters.classList.add('catalog__filters--dragging');
+        filters.style.transform = `translateY(${deltaY}px)`;
+      }
+    });
+    
+    filters.addEventListener('touchend', function(e) {
+      const deltaY = currentY - startY;
+      
+      filters.classList.remove('catalog__filters--dragging');
+      
+      if (deltaY > 150) {
+        this.closeMobileFilters();
+      } else {
+        filters.style.transform = '';
+      }
+    }.bind(this))     
+  }
+  
+  toggleMobileFilters() {
+    const filters = this.container.querySelector('.catalog__filters');
+    
+    if (filters.classList.contains('catalog__filters--open')) {
+      this.closeMobileFilters();
+    } else {
+      this.openMobileFilters();
+    }
+  }
+  
+  openMobileFilters() {
+    const filters = this.container.querySelector('.catalog__filters');
+    
+    document.body.style.overflow = 'hidden';
+
+    if (window.overlay) {
+      window.overlay.show();
+    }
+
+    filters.classList.add('catalog__filters--mobile');
+    filters.classList.add('catalog__filters--open');
+  }
+  
+  closeMobileFilters() {
+    const filters = this.container.querySelector('.catalog__filters');
+    if (filters) {
+      filters.classList.remove('catalog__filters--open');
+      filters.classList.remove('catalog__filters--mobile');
+      filters.classList.remove('catalog__filters--dragging');
+      filters.style.transform = '';
+    }
+
+    document.body.style.overflow = '';
+    
+    if (window.overlay) {
+      window.overlay.hide();
+    }
   }
 }
 
@@ -291,6 +404,4 @@ document.addEventListener('DOMContentLoaded', () => {
   if (catalogContainer) {
     new Catalog(catalogContainer);
   }
-});
-
-export { Catalog }; 
+}); 
