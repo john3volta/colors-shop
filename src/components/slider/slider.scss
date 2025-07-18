@@ -135,14 +135,16 @@
 
 @include mobile {
   .slider {
+    margin-top: rem-calc(16);
     height: auto;
+    padding-left: rem-calc(24);
     background: none;
 
     &__breadcrumbs {
       position: static;
       top: auto;
       left: auto;
-      padding: rem-calc(16) 0 rem-calc(48) rem-calc(24);
+      margin-bottom: rem-calc(46);
       
       .breadcrumbs__link {
         color: $color-dark;
@@ -150,11 +152,24 @@
 
       .breadcrumbs__current {
         color: $color-dark;
-      }
-      
+      }    
+    }
+
+    &__content {
+      display: block;
+      text-align: left;
+    }
+
+    &__title {
+      margin-bottom: rem-calc(46);
+      align-self: flex-start;
+      color: $color-dark;
     }
     
-    &__content,
+    &__subtitle,
+    &__navigation,
+    &__pagination,
+    &__image,
     &__navigation,
     &__pagination {
       display: none;
