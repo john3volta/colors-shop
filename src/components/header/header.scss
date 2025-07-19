@@ -131,6 +131,23 @@
     height: rem-calc(22);
     color: inherit;
   }
+  
+  &__cart-counter {
+    display: none;
+    width: rem-calc(24);
+    height: rem-calc(24);
+    background-color: $color-primary;
+    border-radius: 50%;
+    font-size: rem-calc(12);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: $color-text;
+    }
+  }
 }
 
 @include tablet {
