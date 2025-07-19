@@ -1,4 +1,5 @@
 import { Api } from '../../scripts/api/api.js';
+import { formatPrice } from '../../scripts/utils/helpers.js';
 
 export class Catalog {
   constructor(container) {
@@ -218,7 +219,7 @@ export class Catalog {
       <div class="catalog__card-content">
         <div class="catalog__card-name">${fullName}</div>
         <div class="catalog__card-price-row">
-          <div class="catalog__card-price">${price} ₽</div>
+          <div class="catalog__card-price">${formatPrice(price)}</div>
           <button class="catalog__card-add-to-cart" type="button" aria-label="Добавить в корзину">
             +
           </button>
@@ -228,14 +229,24 @@ export class Catalog {
     
     const addButton = card.querySelector('.catalog__card-add-to-cart');
     addButton.addEventListener('click', function() {
-      this.addToCart({ category: category, brand: brand, name: name, price: price });
+      this.addToCart({ 
+        category: category, 
+        brand: brand, 
+        name: name, 
+        price: price,
+        image: image 
+      });
     }.bind(this));
     
     return card;
   }
   
   addToCart(product) {
-    console.log('Добавлен в корзину:', product.name);
+    // Генерируем событие с данными о товаре
+    const event = new CustomEvent('cart:add', {
+      detail: { product }
+    });
+    document.dispatchEvent(event);
   }
   
   initSortDropdown() {
@@ -398,10 +409,3 @@ export class Catalog {
     }
   }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  const catalogContainer = document.querySelector('.catalog');
-  if (catalogContainer) {
-    new Catalog(catalogContainer);
-  }
-}); 
