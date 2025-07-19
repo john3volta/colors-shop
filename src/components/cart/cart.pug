@@ -1,0 +1,20 @@
+.cart-modal
+  .cart-modal__content
+    .cart-modal__header
+      h2.cart-modal__title Корзина
+      button.cart-modal__close(type="button" aria-label="Закрыть корзину")
+        svg.cart-modal__close-icon
+          use(href="#icon-x")
+    
+    .cart-modal__body
+      .cart-modal__info
+        span.cart-modal__count 0 товаров
+        button.cart-modal__clear(type="button") Очистить список
+      
+      .cart-modal__items
+    
+    .cart-modal__footer
+      .cart-modal__total
+        span.cart-modal__total-label Итого
+        .cart-modal__total-price 0 ₽
+      button.cart-modal__checkout(type="button") Оформить заказ

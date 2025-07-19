@@ -1,0 +1,249 @@
+@use '../../styles/base/variables' as *;
+@use '../../styles/base/mixins' as *;
+@use '../../styles/utils/functions' as *;
+
+.cart-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  max-width: rem-calc(600);
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  display: none;
+  
+  &--active {
+    display: block;
+  }
+  
+  &__content {
+    width: 100%;
+    height: 100%;
+    @include responsive(padding, 12, 40);
+    background-color: $color-bg;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  &__header {
+    @include responsive(margin-bottom, 24, 80);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  &__title {
+    @include responsive(font-size, 24, 30);
+    font-weight: 500;
+    line-height: 0.88em;
+    letter-spacing: -0.04em;
+  }
+  
+  &__close {
+    @include responsive(width, 30, 48);
+    @include responsive(height, 30, 48);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: rem-calc(1) solid rgba($color-dark, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: rgba($color-dark, 0.05);
+      color: $color-primary;
+    }
+  }
+  
+  &__close-icon {
+    @include responsive(width, 16, 24);
+    @include responsive(height, 16, 24);
+    color: inherit;
+  }
+  
+  &__body {
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  &__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: rem-calc(10);
+  }
+  
+  &__count {
+    @include responsive(font-size, 12, 14);
+    line-height: 1.12em;
+  }
+  
+  &__clear {
+    @include responsive(font-size, 12, 14);
+    color: rgba($color-text, 0.4);
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: $color-primary;
+    }
+  }
+  
+  &__items {
+    display: flex;
+    flex-direction: column;
+    @include responsive(gap, 8, 12);
+  }
+
+  &__empty {
+    text-align: center;
+    padding: rem-calc(40) 0;
+    
+    p {
+      @include responsive(font-size, 12, 16);
+      text-transform: uppercase;
+      color: rgba($color-text, 0.4);
+    }
+  }
+  
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: rem-calc(8);
+    border-top: rem-calc(1) solid rgba($color-dark, 0.1);
+  }
+
+  &__item-info {
+    display: flex;
+    align-items: center;
+    gap: rem-calc(8);
+  }
+  
+  &__item-image {
+    width: rem-calc(96);
+    height: rem-calc(96);
+    flex-shrink: 0;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  &__item-content {
+    max-width: rem-calc(165);
+    display: flex;
+    flex-direction: column;
+    gap: rem-calc(16);
+  }
+  
+  &__item-title {
+    @include responsive(font-size, 12, 16);
+    font-weight: 200;
+    line-height: 1.12em;
+    letter-spacing: 0.02em;
+  }
+  
+  &__item-price {
+    font-weight: 600;
+  }
+  
+  &__item-actions {
+    display: flex;
+    align-items: center;
+    @include responsive(gap, 12, 36);
+  }
+
+  &__item-controls {
+    display: flex;
+    align-items: center;
+    @include responsive(gap, 6, 12);
+  }
+  
+  &__quantity-btn {
+    @include responsive(width, 30, 40);
+    @include responsive(height, 18, 24);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F2F2F2;
+    border-radius: rem-calc(4);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      color: $color-primary;
+    }
+  }
+  
+  &__quantity {
+    min-width: rem-calc(20);
+    text-align: center;
+  }
+  
+  &__remove {
+    @include responsive(width, 30, 48);
+    @include responsive(height, 30, 48);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba($color-text, 0.2);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      color: $color-primary;
+    }
+  }
+  
+  &__remove-icon {
+    @include responsive(width, 16, 24);
+    @include responsive(height, 16, 24);
+    color: inherit;
+  }
+  
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  &__total {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__total-label {
+    @include responsive(font-size, 12, 16);
+  }
+  
+  &__total-price {
+    @include responsive(font-size, 24, 30);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  
+  &__checkout {
+    @include responsive(padding-top, 10, 20);
+    @include responsive(padding-bottom, 10, 20);
+    @include responsive(padding-left, 28, 58);
+    @include responsive(padding-right, 28, 58);
+    background-color: $color-primary;
+    border-radius: rem-calc(4);
+    @include responsive(font-size, 12, 16);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+      background-color: rgba($color-primary, 0.8);
+    }
+    
+    &:disabled {
+      background-color: rgba($color-dark, 0.1);
+      cursor: not-allowed;
+    }
+  }
+} 
