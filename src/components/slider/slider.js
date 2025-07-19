@@ -100,10 +100,3 @@ export class Slider {
     }
   }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  const sliders = document.querySelectorAll('.slider');
-  sliders.forEach(container => {
-    new Slider(container);
-  });
-}); 

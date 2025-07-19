@@ -13,7 +13,3 @@ export class Overlay {
     this.overlay.classList.remove('overlay--active');
   }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  window.overlay = new Overlay();
-}); 
