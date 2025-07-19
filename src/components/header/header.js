@@ -1,4 +1,4 @@
-import CartModal from '../cart/cart.js';
+import { CartModal } from '../cart/cart.js';
 
 export class Header {
   constructor() {
