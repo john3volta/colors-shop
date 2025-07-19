@@ -298,15 +298,15 @@ export class Catalog {
   openSortDropdown(dropdown) {
     dropdown.classList.add('catalog__sort-dropdown--open');
     
-    if (window.overlay) {
-      window.overlay.show();
+    if (window.app?.overlay) {
+      window.app.overlay.show();
     }
   }
   
   closeSortDropdown(dropdown) {
     dropdown.classList.remove('catalog__sort-dropdown--open');
-    if (window.overlay) {
-      window.overlay.hide();
+    if (window.app?.overlay) {
+      window.app.overlay.hide();
     }
   }
   
@@ -323,8 +323,8 @@ export class Catalog {
       this.toggleMobileFilters();
     }.bind(this));
     
-    if (window.overlay && window.overlay.overlay) {
-      window.overlay.overlay.addEventListener('click', function(e) {
+    if (window.app?.overlay && window.app.overlay.overlay) {
+      window.app.overlay.overlay.addEventListener('click', function(e) {
         e.stopPropagation();
         
         const dropdown = this.container.querySelector('.catalog__sort');
@@ -391,8 +391,8 @@ export class Catalog {
     
     document.body.style.overflow = 'hidden';
 
-    if (window.overlay) {
-      window.overlay.show();
+    if (window.app?.overlay) {
+      window.app.overlay.show();
     }
 
     filters.classList.add('catalog__filters--mobile');
@@ -410,8 +410,8 @@ export class Catalog {
 
     document.body.style.overflow = '';
     
-    if (window.overlay) {
-      window.overlay.hide();
+    if (window.app?.overlay) {
+      window.app.overlay.hide();
     }
   }
 }
