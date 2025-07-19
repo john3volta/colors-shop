@@ -19,6 +19,7 @@ export class Catalog {
     this.loadProducts();
   }
   
+  // ===== ОБРАБОТЧИКИ СОБЫТИЙ =====
   bindEvents() {
     this.container.querySelectorAll('.catalog__filter-label').forEach(label => {
       label.addEventListener('click', e => {
@@ -62,6 +63,7 @@ export class Catalog {
     return filterMap[text] || text.toLowerCase();
   }
   
+  // ===== ЗАГРУЗКА ДАННЫХ =====
   async loadProducts() {
     try {
       const api = new Api();
@@ -90,6 +92,7 @@ export class Catalog {
     });
   }
   
+  // ===== ФИЛЬТРАЦИЯ И СОРТИРОВКА =====
   filterProducts() {
     if (this.activeFilters.size === 0) {
       this.filteredProducts = [...this.products];
@@ -138,6 +141,7 @@ export class Catalog {
     }
   }
   
+  // ===== РЕНДЕРИНГ =====
   renderProducts() {
     this.filterProducts();
     this.sortProducts();
@@ -190,6 +194,7 @@ export class Catalog {
     }
   }
   
+  // ===== СОЗДАНИЕ КАРТОЧЕК ТОВАРОВ =====
   createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'catalog__card';
@@ -241,14 +246,15 @@ export class Catalog {
     return card;
   }
   
+  // ===== КОРЗИНА =====
   addToCart(product) {
-    // Генерируем событие с данными о товаре
     const event = new CustomEvent('cart:add', {
       detail: { product }
     });
     document.dispatchEvent(event);
   }
   
+  // ===== СОРТИРОВКА =====
   initSortDropdown() {
     const dropdown = this.container.querySelector('.catalog__sort');
     const trigger = this.container.querySelector('.catalog__sort-trigger');
@@ -304,6 +310,7 @@ export class Catalog {
     }
   }
   
+  // ===== МОБИЛЬНЫЕ ФИЛЬТРЫ =====
   initMobileFilters() {
     const filtersBtn = this.container.querySelector('.catalog__filters-btn');
     const filters = this.container.querySelector('.catalog__filters');
@@ -350,7 +357,6 @@ export class Catalog {
       currentY = e.touches[0].clientY;
       const deltaY = currentY - startY;
       
-      // Если свайп вниз, двигаем фильтры за пальцем
       if (deltaY > 0) {
         filters.classList.add('catalog__filters--dragging');
         filters.style.transform = `translateY(${deltaY}px)`;
