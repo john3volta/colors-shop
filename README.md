@@ -2,6 +2,10 @@
 
 Каталог товаров для магазина красок с функционалом корзины, фильтрации и адаптивным дизайном.
 
+## Демо
+
+Проект доступен на GitHub Pages: [https://john3volta.github.io/colors-shop](https://john3volta.github.io/colors-shop) 
+
 ## Функциональность
 
 - Слайдер с навигацией
@@ -43,7 +47,3 @@ src/
 ├── styles/        # Стили
 └── assets/        # Ресурсы
 ```
-
-## Демо
-
-Проект доступен на GitHub Pages: [https://john3volta.github.io/colors-shop](https://john3volta.github.io/colors-shop) 
